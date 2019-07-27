@@ -1,0 +1,36 @@
+type User {
+  # Note: MongoDB _id field
+  id: ID!
+
+  name: String
+  email: String!
+  password: String!
+
+  # Note: creation timestamp
+  createdAt: String!
+  # Note: last updated timestamp
+  updatedAt: String!
+}
+
+type Query {
+  users: [User!]!
+  user(id: ID!): User
+}
+
+input CreateUserInput {
+  name: String
+  email: String!
+  password: String!
+}
+
+input EditUserInput {
+  name: String
+  email: String
+  password: String
+}
+
+type Mutation {
+  createUser(input: CreateUserInput!): User
+  editUser(id: ID!, input: EditUserInput!): User
+  deleteUser(id: ID!): Boolean
+}
